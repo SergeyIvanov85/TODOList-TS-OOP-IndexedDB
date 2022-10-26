@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alex-skakun/fd2-homework-5.git"
+    "url": "https://github.com/SergeyIvanov85/TODOList-TS-OOP-IndexedDB"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alex-skakun/fd2-homework-5/issues"
+    "url": "https://github.com/SergeyIvanov85/TODOList-TS-OOP-IndexedDB"
   },
-  "homepage": "https://github.com/alex-skakun/fd2-homework-5#readme",
+  "homepage": "https://github.com/SergeyIvanov85/TODOList-TS-OOP-IndexedDB",
   "devDependencies": {
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
