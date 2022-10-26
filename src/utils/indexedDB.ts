@@ -1,4 +1,4 @@
-export  type  Migration = (vcTransaction: IDBTransaction) => void;
+export type Migration = (vcTransaction: IDBTransaction) => void;
 export type Migrations = [Migration, ...Migration[]];
 
 export  function openDB (dbName: string, dbMigrations: Migrations): Promise<IDBDatabase> {
@@ -78,5 +78,5 @@ export function getAllFromDB<T>(db: IDBDatabase, storageName: string, key?: IDBK
             }
         }
 
-    })
+    });
 }
