@@ -1,6 +1,9 @@
 import {DisposableView} from "../types";
 import {TodoItem, TodoItemId} from "./TodoItem";
 import {TodoModel} from "./TodoModel";
+import {todoItemTemplate} from "./TodoItemTemplate";
+import {todoGroupTemplate} from "./TodoGroupTemplate";
+import {todoTemplate} from "./TodoTemplate";
 
 export class TodoView implements DisposableView {
     readonly #eventListeners = {
@@ -27,13 +30,13 @@ export class TodoView implements DisposableView {
 
     render(parentElement: HTMLElement): () => void {
         this.#initModel();
-        this.initTemplate(parentElement);
-        this.bindListeners();
+        this.#initTemplate(parentElement);
+        this.#bindListeners();
 
         return () => {
-            this.#unBindListeners();
+            this.#unbindListeners();
             this.#destroyModel();
-            this.destroyTemplate(parentElement);
+            this.#destroyTemplate(parentElement);
         }
     }
 
@@ -90,8 +93,8 @@ export class TodoView implements DisposableView {
 
         for (const [timestamp, items] of groupedList.entries()) {
             const el = todoGroupTemplate.content.cloneNode(true) as DocumentFragment;
-            const header = el.querySelector('header');
-            const ul = el.querySelector('ul');
+            const header = el.querySelector('header')!;
+            const ul = el.querySelector('ul')!;
             const title = new Date(timestamp).toLocaleDateString('ru', {
                 day: 'numeric',
                 month: 'long',
@@ -134,7 +137,7 @@ export class TodoView implements DisposableView {
                 const timestamp = item.date.getTime();
 
                 if (!map.has(timestamp)) {
-                    map.set(timestamp, [];)
+                    map.set(timestamp, []);
                 }
 
                 map.get(timestamp).push(item);
@@ -150,9 +153,9 @@ export class TodoView implements DisposableView {
     }
 
     #unbindListeners(): void {
-
+        this.#form?.removeEventListener('submit', this.#eventListeners);
+        this.#model?.removeEventListener('list', this.#eventListeners);
+        this.#list?.removeEventListener('click', this.#eventListeners);
     }
-
-
 
 }
