@@ -15,7 +15,7 @@ export class TodoView implements DisposableView {
                     return  this.#onListUpdate(event as CustomEvent<TodoItem[]>);
                 case this.#list:
                     const target = event.target as HTMLElement;
-                    const  taskID = Number(target.closest<HTMLElement>('task')?.dataset.taskID);
+                    const taskID = Number(target.closest<HTMLElement>('.task')?.dataset.taskID);
 
                     if (target.closest('.task-toggle')) return this.#onToggleTask(taskID);
                     if (target.closest('.task-delete')) return this.#onDeleteTask(taskID);
